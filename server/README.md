@@ -4,7 +4,7 @@
 
 1. Go to project folder
 
-> cd generated_backend
+> cd server
 
 2. Install Dependencies
 
@@ -17,6 +17,8 @@ DB_URL=
 
 PORT=3000
 SECRET=AAA
+STRIPE_SECRET_KEY=sk_test...
+
 ````
 
 ## Run
