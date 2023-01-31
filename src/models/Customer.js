@@ -5,14 +5,27 @@ const CustomerSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    stripePublishableKey: {
+        type: String,
+        required: true
+    },
     phone: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required: false
     },
     date: {
         type: Date,
         required: true,
         default: Date.now
+    },
+    is_host: {
+        type: Boolean,
+        require: true,
+        default: false
     }
 });
 

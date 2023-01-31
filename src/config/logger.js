@@ -36,23 +36,29 @@ const logger = createLogger({
   ],
 });
 
+
+// LOGGER MIDDLEWARE
 logger.loggerRequest = (req, res, next) => {
+  // INFO LEVEL
+  logger.log('info', req.url);
+
   const oldEnd = res.end;
   res.end = function (chunk) {
     const body = chunk ? chunk.toString() : '';
 
-    // INFO LEVEL
-    logger.log('info', req.url);
 
     let resBody = '';
     try {
       resBody = JSON.parse(body);
     } catch (err) {
       resBody = body;
-    }
+    } 
+
+    const url = (req.baseUrl ? req.baseUrl : '') + (req.url || '');
+
     // DEBUG LEVEL
     logger.log('debug', {
-      url: `${req.baseUrl}${req.url}`,
+      url: url,
       reqBody: req.body,
       res: resBody,
       status: this.statusCode,
